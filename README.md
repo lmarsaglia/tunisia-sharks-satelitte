@@ -13,7 +13,7 @@ This repository goes with paper ....
 - *figures:* folders to store figures
 - *shapefiles:* shapefiles for analyses
 
-## folder descriptions
+## notebooks/scripts descriptions
 description of scripts inside notebook folder
 
 1. *prepare_sar_data.rmd:* script to create sar dataset
