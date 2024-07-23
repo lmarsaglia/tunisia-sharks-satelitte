@@ -1,0 +1,112 @@
+---
+title: "Prepare data for clustering with skater"
+output: html_notebook
+---
+
+```{r}
+# all med coordinates 
+#central med 8.44,31.89,16.56,38.63
+
+xmin <- 8.44
+ymin <- 31.89
+xmax <- 16.56
+ymax <- 38.63
+
+
+# set the desired grid cell size (in degrees)
+cellsize <- 0.1
+
+# create a bounding box polygon with fixed number of rows and columns
+bbox <- st_polygon(list(rbind(c(xmin, ymin), c(xmin, ymax), c(xmax, ymax), c(xmax, ymin), c(xmin, ymin))))
+polys <- st_make_grid(bbox, cellsize=cellsize)
+
+# set the coordinate reference system to WGS84
+st_crs(polys) <- st_crs("+proj=longlat +datum=WGS84")
+
+# write the shapefile to disk
+st_write(polys, here("shapefiles","med_grid_0.1_final.shp"))
+
+plot(polys)
+
+grid_polygon = st_as_sf(polys,crs = st_crs(4326))
+
+grid_polygon$id = rownames(grid_polygon)
+
+grid_polygon = grid_polygon %>% 
+  mutate(centroid= st_centroid(x)) %>%
+  mutate(lon = st_coordinates(centroid)[,1],
+        lat = st_coordinates(centroid)[,2])
+
+
+#add depth to grid from centroid
+bathy <- getNOAA.bathy(lon1 = min(detections$detect_lon)-10, lon2 = max(detections$detect_lon)+10, lat1 = min(detections$detect_lat)-10, lat2 = max(detections$detect_lat)+10, resolution = 10)
+
+grid_depth=grid_polygon %>%
+  st_drop_geometry()
+
+points_depth <- get.depth(bathy, grid_depth[,3:4], locator = FALSE)
+
+
+grid_polygon = left_join(grid_polygon,points_depth) %>% 
+                           filter(depth<0)
+
+```
+
+
+```{r}
+
+
+sar_detections <- fishwatchr::gfw_query(query = here::here('queries','sar_detections_all_tunisia.sql'),
+                                        run_query = TRUE,
+                                        con = con)$data
+sar_detections$year <- format(sar_detections$detect_timestamp, format="%Y") 
+
+#sar_detections = readRDS(here("data","sar_detections.RData"))
+
+detections <-  sar_detections %>%
+  filter(prediction=='fishing',
+         matched_category== 'unmatched' & is.na(ssvid) |
+         matched_category=='matched_fishing'&flag=='TUN' & gear %in% c('trawlers', 'fishing'),
+         year!='2022',
+         year!='2023') 
+
+detections %>% group_by(gear) %>% summarise(n_distinct(detect_id))
+
+#aggregate to grid
+wgs = "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"
+
+df_sf <- st_as_sf(detections, coords = c("detect_lon", "detect_lat"), crs = wgs)
+
+st_crs(df_sf) = wgs
+
+good_points <- st_join(df_sf,grid_polygon,join=st_within) 
+
+aggregated_by_grid = good_points %>% 
+  group_by(id,depth) %>%
+  summarise(n_detections=n_distinct(detect_id),avg_depth=mean(depth)) %>%
+  sf::st_drop_geometry()
+
+
+data_sf =merge(aggregated_by_grid, grid_polygon, all = TRUE) 
+#%>%filter(!is.na(id),!is.na(n_detections)) 
+
+
+df_sf <- st_as_sf(data_sf, crs = wgs)# %>% 
+  #filter(!is.na(id), !is.na(n_detections))
+#plot sar detections w grid
+df_sf %>% 
+ggplot()+
+  geom_sf(aes(fill = n_detections))+
+  scale_fill_gradient(  
+                    guide = guide_legend(reverse = TRUE),limits = c(0, 300), oob = scales::squish)+
+  coord_sf(datum = NA)+
+  theme(legend.position="right",
+        plot.title = element_text(hjust = 0.5,color = "Gray40", size = 16, face = "bold"),
+        plot.subtitle = element_text(color = "blue"),
+        plot.caption = element_text(color = "Gray60"))+ 
+  guides(fill = guide_legend(title = "Unit: N.detections per cell", title.position = "bottom", title.theme =element_text(size = 10, face = "bold",colour = "gray70",angle = 0)))
+
+ggsave( filename = here::here('figures', "detections_by_0.1_grid.png"),width = 30, height = 20, units = "cm")
+
+```
+

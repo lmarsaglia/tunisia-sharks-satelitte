@@ -1,0 +1,307 @@
+DATE,REGION,GOUVERNORAT,Port,T.PECHE,ESPECE,GROUPE,QR,Année
+31/01/2020,Sud,Medenine,Zarzis,Chalut benthique,Roussette,P.blanc,339.3,2020
+31/01/2020,Sud,Medenine,Zarzis,Chalut benthique,Raie,P.blanc,35.1,2020
+31/01/2020,Sud,Medenine,Zarzis,Cotière,Chien de mer,P.blanc,1420,2020
+31/01/2020,Sud,Medenine,Zarzis,Cotière,Emissole,P.blanc,5183,2020
+31/01/2020,Sud,Medenine,Zarzis,Cotière,Raie,P.blanc,1278,2020
+31/01/2020,Sud,Medenine,Zarzis,Cotière,Ange de mer,P.blanc,355,2020
+31/01/2020,Sud,Medenine,Houmtsouk,Cotière,Chien de mer,P.blanc,355,2020
+31/01/2020,Sud,Medenine,Houmtsouk,Cotière,Raie,P.blanc,1278,2020
+31/01/2020,Sud,Medenine,Boughrara,Cotière,Raie,P.blanc,139.16,2020
+31/01/2020,Sud,Medenine,Elketf,Cotière,Chien de mer,P.blanc,2030.6,2020
+31/01/2020,Sud,Medenine,Elketf,Cotière,Emissole,P.blanc,2584.4,2020
+31/01/2020,Sud,Medenine,Elketf,Cotière,Raie,P.blanc,653.2,2020
+31/01/2020,Sud,Medenine,Hassi Jallaba,Cotière,Raie,P.blanc,142,2020
+31/01/2020,Sud,Medenine,Elgreen,Cotière,Raie,P.blanc,284,2020
+31/01/2020,Sud,Sfax,Sfax,Chalut benthique,Chien de mer,P.blanc,1036.62,2020
+31/01/2020,Sud,Sfax,Sfax,Chalut benthique,Roussette,P.blanc,1992.51,2020
+31/01/2020,Sud,Sfax,Sfax,Chalut benthique,Raie,P.blanc,2482.74,2020
+31/01/2020,Sud,Sfax,Zabboussa,Cotière,Ange de mer,P.blanc,142,2020
+31/01/2020,Sud,Sfax,Mellita,Cotière,Roussette,P.blanc,4970,2020
+31/01/2020,Sud,Sfax,Mellita,Cotière,Raie,P.blanc,2470.8,2020
+31/01/2020,Sud,Sfax,Kratten,Cotière,Roussette,P.blanc,1846,2020
+31/01/2020,Sud,Sfax,Attaya,Cotière,Roussette,P.blanc,4047,2020
+29/02/2020,Sud,Medenine,Zarzis,Chalut benthique,Roussette,P.blanc,58.5,2020
+29/02/2020,Sud,Medenine,Zarzis,Chalut benthique,Ange de mer,P.blanc,35.1,2020
+29/02/2020,Sud,Medenine,Zarzis,Cotière,Chien de mer,P.blanc,397.6,2020
+29/02/2020,Sud,Medenine,Zarzis,Cotière,Emissole,P.blanc,8647.8,2020
+29/02/2020,Sud,Medenine,Zarzis,Cotière,Raie,P.blanc,994,2020
+29/02/2020,Sud,Medenine,Houmtsouk,Cotière,Chien de mer,P.blanc,241.4,2020
+29/02/2020,Sud,Medenine,Houmtsouk,Cotière,Raie,P.blanc,2556,2020
+29/02/2020,Sud,Medenine,Ajim,Cotière,Raie,P.blanc,610.6,2020
+29/02/2020,Sud,Medenine,Boughrara,Cotière,Raie,P.blanc,937.2,2020
+29/02/2020,Sud,Medenine,Elketf,Cotière,Chien de mer,P.blanc,2414,2020
+29/02/2020,Sud,Medenine,Elketf,Cotière,Emissole,P.blanc,11999,2020
+29/02/2020,Sud,Medenine,Elketf,Cotière,Raie,P.blanc,1022.4,2020
+29/02/2020,Sud,Medenine,Hassi Jallaba,Cotière,Raie,P.blanc,852,2020
+29/02/2020,Sud,Medenine,Elgreen,Cotière,Raie,P.blanc,1420,2020
+29/02/2020,Sud,Sfax,Sfax,Chalut benthique,Chien de mer,P.blanc,508.95,2020
+29/02/2020,Sud,Sfax,Sfax,Chalut benthique,Roussette,P.blanc,1111.5,2020
+29/02/2020,Sud,Sfax,Sfax,Chalut benthique,Raie,P.blanc,2345.85,2020
+29/02/2020,Sud,Sfax,Sfax,Cotière,Raie,P.blanc,4015.76,2020
+29/02/2020,Sud,Sfax,Ellouza,Cotière,Raie,P.blanc,4260,2020
+29/02/2020,Sud,Sfax,Sidi Mansour,Cotière,Raie,P.blanc,2661.08,2020
+29/02/2020,Sud,Sfax,Zabboussa,Cotière,Ange de mer,P.blanc,170.4,2020
+29/02/2020,Sud,Sfax,Mellita,Cotière,Roussette,P.blanc,4828,2020
+29/02/2020,Sud,Sfax,Kratten,Cotière,Roussette,P.blanc,923,2020
+29/02/2020,Sud,Sfax,Attaya,Cotière,Roussette,P.blanc,2343,2020
+31/03/2020,Sud,Medenine,Zarzis,Chalut benthique,Chien de mer,P.blanc,35.1,2020
+31/03/2020,Sud,Medenine,Zarzis,Chalut benthique,Roussette,P.blanc,163.8,2020
+31/03/2020,Sud,Medenine,Zarzis,Chalut benthique,Emissole,P.blanc,23.4,2020
+31/03/2020,Sud,Medenine,Zarzis,Cotière,Chien de mer,P.blanc,497,2020
+31/03/2020,Sud,Medenine,Zarzis,Cotière,Emissole,P.blanc,2911,2020
+31/03/2020,Sud,Medenine,Zarzis,Cotière,Raie,P.blanc,1420,2020
+31/03/2020,Sud,Medenine,Zarzis,Cotière,Ange de mer,P.blanc,568,2020
+31/03/2020,Sud,Medenine,Houmtsouk,Cotière,Chien de mer,P.blanc,823.6,2020
+31/03/2020,Sud,Medenine,Houmtsouk,Cotière,Emissole,P.blanc,355,2020
+31/03/2020,Sud,Medenine,Houmtsouk,Cotière,Raie,P.blanc,908.8,2020
+31/03/2020,Sud,Medenine,Ajim,Cotière,Raie,P.blanc,142,2020
+31/03/2020,Sud,Medenine,Boughrara,Cotière,Raie,P.blanc,191.7,2020
+31/03/2020,Sud,Medenine,Elketf,Cotière,Chien de mer,P.blanc,1633,2020
+31/03/2020,Sud,Medenine,Elketf,Cotière,Emissole,P.blanc,3479,2020
+31/03/2020,Sud,Medenine,Elketf,Cotière,Raie,P.blanc,738.4,2020
+31/03/2020,Sud,Medenine,Hassi Jallaba,Cotière,Raie,P.blanc,284,2020
+31/03/2020,Sud,Medenine,Elgreen,Cotière,Raie,P.blanc,284,2020
+31/03/2020,Sud,Sfax,Sfax,Chalut benthique,Chien de mer,P.blanc,871.65,2020
+31/03/2020,Sud,Sfax,Sfax,Chalut benthique,Roussette,P.blanc,2082.6,2020
+31/03/2020,Sud,Sfax,Sfax,Chalut benthique,Raie,P.blanc,2743.65,2020
+31/03/2020,Sud,Sfax,Attaya,Cotière,Roussette,P.blanc,1704,2020
+30/04/2020,Sud,Gabes,Gabes,Cotière,Chien de mer,P.blanc,397.6,2020
+30/04/2020,Sud,Medenine,Zarzis,Chalut benthique,Raie,P.blanc,58.5,2020
+30/04/2020,Sud,Medenine,Zarzis,Chalut benthique,Ange de mer,P.blanc,93.6,2020
+30/04/2020,Sud,Medenine,Zarzis,Cotière,Chien de mer,P.blanc,184.6,2020
+30/04/2020,Sud,Medenine,Zarzis,Cotière,Emissole,P.blanc,16550.1,2020
+30/04/2020,Sud,Medenine,Zarzis,Cotière,Raie,P.blanc,5353.4,2020
+30/04/2020,Sud,Medenine,Zarzis,Cotière,Ange de mer,P.blanc,7310.16,2020
+30/04/2020,Sud,Medenine,Houmtsouk,Cotière,Chien de mer,P.blanc,852,2020
+30/04/2020,Sud,Medenine,Houmtsouk,Cotière,Emissole,P.blanc,710,2020
+30/04/2020,Sud,Medenine,Houmtsouk,Cotière,Raie,P.blanc,994,2020
+30/04/2020,Sud,Medenine,Ajim,Cotière,Raie,P.blanc,241.4,2020
+30/04/2020,Sud,Medenine,Elketf,Cotière,Chien de mer,P.blanc,1988,2020
+30/04/2020,Sud,Medenine,Elketf,Cotière,Emissole,P.blanc,6816,2020
+30/04/2020,Sud,Medenine,Elketf,Cotière,Raie,P.blanc,9514,2020
+30/04/2020,Sud,Sfax,Sfax,Chalut benthique,Chien de mer,P.blanc,662.22,2020
+30/04/2020,Sud,Sfax,Sfax,Chalut benthique,Roussette,P.blanc,479.7,2020
+30/04/2020,Sud,Sfax,Sfax,Chalut benthique,Raie,P.blanc,438.75,2020
+30/04/2020,Sud,Sfax,Sfax,Cotière,Chien de mer,P.blanc,2077.46,2020
+30/04/2020,Sud,Sfax,Sfax,Cotière,Raie,P.blanc,2077.46,2020
+30/04/2020,Sud,Sfax,Ellouza,Cotière,Chien de mer,P.blanc,2840,2020
+30/04/2020,Sud,Sfax,Ellouza,Cotière,Raie,P.blanc,2840,2020
+30/04/2020,Sud,Sfax,Sidi Mansour,Cotière,Chien de mer,P.blanc,292.52,2020
+30/04/2020,Sud,Sfax,Sidi Mansour,Cotière,Raie,P.blanc,292.52,2020
+30/04/2020,Sud,Sfax,Mellita,Cotière,Roussette,P.blanc,1221.2,2020
+30/04/2020,Sud,Sfax,Mellita,Cotière,Raie,P.blanc,2982,2020
+30/04/2020,Sud,Sfax,Kratten,Cotière,Roussette,P.blanc,1136,2020
+30/04/2020,Sud,Sfax,Kratten,Cotière,Raie,P.blanc,994,2020
+30/04/2020,Sud,Sfax,Attaya,Cotière,Chien de mer,P.blanc,1562,2020
+30/04/2020,Sud,Sfax,Attaya,Cotière,Roussette,P.blanc,781,2020
+30/04/2020,Sud,Sfax,Attaya,Cotière,Raie,P.blanc,6347.4,2020
+31/05/2020,Sud,Gabes,Gabes,Cotière,Chien de mer,P.blanc,9556.6,2020
+31/05/2020,Sud,Gabes,Gabes,Cotière,Raie,P.blanc,4984.2,2020
+31/05/2020,Sud,Gabes,Zarrat,Cotière,Raie,P.blanc,284,2020
+31/05/2020,Sud,Medenine,Zarzis,Chalut benthique,Chien de mer,P.blanc,11.7,2020
+31/05/2020,Sud,Medenine,Zarzis,Chalut benthique,Roussette,P.blanc,58.5,2020
+31/05/2020,Sud,Medenine,Zarzis,Chalut benthique,Emissole,P.blanc,81.9,2020
+31/05/2020,Sud,Medenine,Zarzis,Chalut benthique,Raie,P.blanc,152.1,2020
+31/05/2020,Sud,Medenine,Zarzis,Chalut benthique,Ange de mer,P.blanc,93.6,2020
+31/05/2020,Sud,Medenine,Zarzis,Cotière,Chien de mer,P.blanc,7338.56,2020
+31/05/2020,Sud,Medenine,Zarzis,Cotière,Emissole,P.blanc,6323.26,2020
+31/05/2020,Sud,Medenine,Zarzis,Cotière,Raie,P.blanc,3599.7,2020
+31/05/2020,Sud,Medenine,Zarzis,Cotière,Ange de mer,P.blanc,8583.9,2020
+31/05/2020,Sud,Medenine,Houmtsouk,Cotière,Emissole,P.blanc,1988,2020
+31/05/2020,Sud,Medenine,Houmtsouk,Cotière,Raie,P.blanc,7100,2020
+31/05/2020,Sud,Medenine,Houmtsouk,Cotière,Ange de mer,P.blanc,2953.6,2020
+31/05/2020,Sud,Medenine,Ajim,Cotière,Raie,P.blanc,539.6,2020
+31/05/2020,Sud,Medenine,Ajim,Cotière,Ange de mer,P.blanc,639,2020
+31/05/2020,Sud,Medenine,Boughrara,Cotière,Raie,P.blanc,383.4,2020
+31/05/2020,Sud,Medenine,Boughrara,Cotière,Ange de mer,P.blanc,1174.34,2020
+31/05/2020,Sud,Medenine,Elketf,Cotière,Chien de mer,P.blanc,4075.4,2020
+31/05/2020,Sud,Medenine,Elketf,Cotière,Emissole,P.blanc,5126.2,2020
+31/05/2020,Sud,Medenine,Elketf,Cotière,Raie,P.blanc,1519.4,2020
+31/05/2020,Sud,Medenine,Biban,Lagunaire,Raie,P.blanc,127,2020
+31/05/2020,Sud,Medenine,Hassi Jallaba,Cotière,Raie,P.blanc,479.96,2020
+31/05/2020,Sud,Medenine,Hassi Jallaba,Cotière,Ange de mer,P.blanc,1468.28,2020
+31/05/2020,Sud,Medenine,Elgreen,Cotière,Raie,P.blanc,460.08,2020
+31/05/2020,Sud,Medenine,Elgreen,Cotière,Ange de mer,P.blanc,1408.64,2020
+31/05/2020,Sud,Sfax,Sfax,Chalut benthique,Chien de mer,P.blanc,2020.59,2020
+31/05/2020,Sud,Sfax,Sfax,Chalut benthique,Roussette,P.blanc,3105.18,2020
+31/05/2020,Sud,Sfax,Sfax,Chalut benthique,Raie,P.blanc,3257.28,2020
+31/05/2020,Sud,Sfax,Sfax,Cotière,Chien de mer,P.blanc,1899.96,2020
+31/05/2020,Sud,Sfax,Sfax,Cotière,Raie,P.blanc,7602.68,2020
+31/05/2020,Sud,Sfax,Ellouza,Cotière,Chien de mer,P.blanc,2130,2020
+31/05/2020,Sud,Sfax,Ellouza,Cotière,Raie,P.blanc,8520,2020
+31/05/2020,Sud,Sfax,Sidi Mansour,Cotière,Chien de mer,P.blanc,2896.8,2020
+31/05/2020,Sud,Sfax,Sidi Mansour,Cotière,Raie,P.blanc,11594.3,2020
+31/05/2020,Sud,Sfax,Skhira,Cotière,Chien de mer,P.blanc,710,2020
+31/05/2020,Sud,Sfax,Mellita,Cotière,Chien de mer,P.blanc,482.8,2020
+31/05/2020,Sud,Sfax,Mellita,Cotière,Roussette,P.blanc,738.4,2020
+31/05/2020,Sud,Sfax,Kratten,Cotière,Chien de mer,P.blanc,994,2020
+31/05/2020,Sud,Sfax,Kratten,Cotière,Raie,P.blanc,639,2020
+31/05/2020,Sud,Sfax,Attaya,Cotière,Chien de mer,P.blanc,198.8,2020
+31/05/2020,Sud,Sfax,Attaya,Cotière,Roussette,P.blanc,312.4,2020
+30/06/2020,Sud,Gabes,Gabes,Cotière,Chien de mer,P.blanc,4970,2020
+30/06/2020,Sud,Gabes,Gabes,Cotière,Raie,P.blanc,624.8,2020
+30/06/2020,Sud,Gabes,Zarrat,Cotière,Chien de mer,P.blanc,56.8,2020
+30/06/2020,Sud,Medenine,Zarzis,Chalut benthique,Roussette,P.blanc,81.9,2020
+30/06/2020,Sud,Medenine,Zarzis,Chalut benthique,Emissole,P.blanc,35.1,2020
+30/06/2020,Sud,Medenine,Zarzis,Chalut benthique,Raie,P.blanc,175.5,2020
+30/06/2020,Sud,Medenine,Zarzis,Cotière,Chien de mer,P.blanc,15922.46,2020
+30/06/2020,Sud,Medenine,Zarzis,Cotière,Emissole,P.blanc,1107.6,2020
+30/06/2020,Sud,Medenine,Zarzis,Cotière,Raie,P.blanc,21829.66,2020
+30/06/2020,Sud,Medenine,Zarzis,Cotière,Ange de mer,P.blanc,26490.1,2020
+30/06/2020,Sud,Medenine,Houmtsouk,Cotière,Chien de mer,P.blanc,2414,2020
+30/06/2020,Sud,Medenine,Houmtsouk,Cotière,Emissole,P.blanc,1704,2020
+30/06/2020,Sud,Medenine,Houmtsouk,Cotière,Raie,P.blanc,14029.6,2020
+30/06/2020,Sud,Medenine,Ajim,Cotière,Raie,P.blanc,2300.4,2020
+30/06/2020,Sud,Medenine,Biban,Lagunaire,Raie,P.blanc,191,2020
+30/06/2020,Sud,Medenine,Elgreen,Cotière,Raie,P.blanc,2272,2020
+30/06/2020,Sud,Sfax,Sfax,Chalut benthique,Chien de mer,P.blanc,1166.49,2020
+30/06/2020,Sud,Sfax,Sfax,Chalut benthique,Roussette,P.blanc,1989,2020
+30/06/2020,Sud,Sfax,Sfax,Chalut benthique,Raie,P.blanc,2726.1,2020
+30/06/2020,Sud,Sfax,Sfax,Cotière,Chien de mer,P.blanc,2810.18,2020
+30/06/2020,Sud,Sfax,Sfax,Cotière,Raie,P.blanc,7024.74,2020
+30/06/2020,Sud,Sfax,Ellouza,Cotière,Chien de mer,P.blanc,2840,2020
+30/06/2020,Sud,Sfax,Ellouza,Cotière,Raie,P.blanc,7100,2020
+30/06/2020,Sud,Sfax,Sidi Mansour,Cotière,Chien de mer,P.blanc,4301.18,2020
+30/06/2020,Sud,Sfax,Sidi Mansour,Cotière,Raie,P.blanc,10753.66,2020
+30/06/2020,Sud,Sfax,Mellita,Cotière,Roussette,P.blanc,5680,2020
+30/06/2020,Sud,Sfax,Mellita,Cotière,Emissole,P.blanc,1420,2020
+30/06/2020,Sud,Sfax,Kratten,Cotière,Roussette,P.blanc,2343,2020
+30/06/2020,Sud,Sfax,Attaya,Cotière,Raie,P.blanc,2414,2020
+31/07/2020,Sud,Gabes,Gabes,Cotière,Chien de mer,P.blanc,15080.4,2020
+31/07/2020,Sud,Gabes,Gabes,Cotière,Raie,P.blanc,568,2020
+31/07/2020,Sud,Gabes,Zarrat,Cotière,Chien de mer,P.blanc,142,2020
+31/07/2020,Sud,Medenine,Zarzis,Cotière,Chien de mer,P.blanc,44755.56,2020
+31/07/2020,Sud,Medenine,Zarzis,Cotière,Emissole,P.blanc,937.2,2020
+31/07/2020,Sud,Medenine,Zarzis,Cotière,Raie,P.blanc,16443.6,2020
+31/07/2020,Sud,Medenine,Zarzis,Cotière,Ange de mer,P.blanc,15336,2020
+31/07/2020,Sud,Medenine,Houmtsouk,Cotière,Chien de mer,P.blanc,3209.2,2020
+31/07/2020,Sud,Medenine,Houmtsouk,Cotière,Emissole,P.blanc,4260,2020
+31/07/2020,Sud,Medenine,Houmtsouk,Cotière,Raie,P.blanc,6390,2020
+31/07/2020,Sud,Medenine,Ajim,Cotière,Raie,P.blanc,1121.8,2020
+31/07/2020,Sud,Medenine,Boughrara,Cotière,Raie,P.blanc,617.7,2020
+31/07/2020,Sud,Medenine,Elketf,Cotière,Chien de mer,P.blanc,3124,2020
+31/07/2020,Sud,Medenine,Elketf,Cotière,Emissole,P.blanc,6532,2020
+31/07/2020,Sud,Medenine,Elketf,Cotière,Raie,P.blanc,7526,2020
+31/07/2020,Sud,Medenine,Hassi Jallaba,Cotière,Raie,P.blanc,568,2020
+31/07/2020,Sud,Medenine,Elgreen,Cotière,Raie,P.blanc,994,2020
+31/07/2020,Sud,Sfax,Sfax,Cotière,Chien de mer,P.blanc,2483.58,2020
+31/07/2020,Sud,Sfax,Sfax,Cotière,Raie,P.blanc,3726.08,2020
+31/07/2020,Sud,Sfax,Ellouza,Cotière,Chien de mer,P.blanc,2840,2020
+31/07/2020,Sud,Sfax,Ellouza,Cotière,Raie,P.blanc,4260,2020
+31/07/2020,Sud,Sfax,Sidi Mansour,Cotière,Chien de mer,P.blanc,3801.34,2020
+31/07/2020,Sud,Sfax,Sidi Mansour,Cotière,Raie,P.blanc,5702.72,2020
+31/07/2020,Sud,Sfax,Mahres,Cotière,Chien de mer,P.blanc,3947.6,2020
+31/07/2020,Sud,Sfax,Skhira,Cotière,Chien de mer,P.blanc,1491,2020
+31/07/2020,Sud,Sfax,Mellita,Cotière,Roussette,P.blanc,2982,2020
+31/07/2020,Sud,Sfax,Mellita,Cotière,Raie,P.blanc,7810,2020
+31/07/2020,Sud,Sfax,Kratten,Cotière,Roussette,P.blanc,3053,2020
+31/07/2020,Sud,Sfax,Attaya,Cotière,Chien de mer,P.blanc,2556,2020
+31/07/2020,Sud,Sfax,Attaya,Cotière,Roussette,P.blanc,2428.2,2020
+31/07/2020,Sud,Sfax,Attaya,Cotière,Raie,P.blanc,3038.8,2020
+31/08/2020,Sud,Gabes,Gabes,Cotière,Chien de mer,P.blanc,1789.2,2020
+31/08/2020,Sud,Medenine,Zarzis,Cotière,Chien de mer,P.blanc,18786.6,2020
+31/08/2020,Sud,Medenine,Zarzis,Cotière,Emissole,P.blanc,1689.8,2020
+31/08/2020,Sud,Medenine,Zarzis,Cotière,Raie,P.blanc,5765.2,2020
+31/08/2020,Sud,Medenine,Zarzis,Cotière,Ange de mer,P.blanc,33865.58,2020
+31/08/2020,Sud,Medenine,Houmtsouk,Cotière,Chien de mer,P.blanc,2513.4,2020
+31/08/2020,Sud,Medenine,Houmtsouk,Cotière,Emissole,P.blanc,1420,2020
+31/08/2020,Sud,Medenine,Houmtsouk,Cotière,Raie,P.blanc,5680,2020
+31/08/2020,Sud,Medenine,Houmtsouk,Cotière,Ange de mer,P.blanc,2414,2020
+31/08/2020,Sud,Medenine,Ajim,Cotière,Raie,P.blanc,454.4,2020
+31/08/2020,Sud,Medenine,Boughrara,Cotière,Ange de mer,P.blanc,1633,2020
+31/08/2020,Sud,Medenine,Elketf,Cotière,Chien de mer,P.blanc,1590.4,2020
+31/08/2020,Sud,Medenine,Elketf,Cotière,Emissole,P.blanc,5254,2020
+31/08/2020,Sud,Medenine,Elketf,Cotière,Raie,P.blanc,3479,2020
+31/08/2020,Sud,Medenine,Hassi Jallaba,Cotière,Ange de mer,P.blanc,1278,2020
+31/08/2020,Sud,Medenine,Elgreen,Cotière,Ange de mer,P.blanc,1420,2020
+31/08/2020,Sud,Sfax,Sfax,Cotière,Chien de mer,P.blanc,1486.74,2020
+31/08/2020,Sud,Sfax,Sfax,Cotière,Raie,P.blanc,1486.74,2020
+31/08/2020,Sud,Sfax,Ellouza,Cotière,Chien de mer,P.blanc,1420,2020
+31/08/2020,Sud,Sfax,Ellouza,Cotière,Raie,P.blanc,1420,2020
+31/08/2020,Sud,Sfax,Sidi Mansour,Cotière,Chien de mer,P.blanc,2274.84,2020
+31/08/2020,Sud,Sfax,Sidi Mansour,Cotière,Raie,P.blanc,2274.84,2020
+31/08/2020,Sud,Sfax,Mahres,Cotière,Chien de mer,P.blanc,2783.2,2020
+31/08/2020,Sud,Sfax,Skhira,Cotière,Chien de mer,P.blanc,6461,2020
+31/08/2020,Sud,Sfax,Mellita,Cotière,Roussette,P.blanc,511.2,2020
+31/08/2020,Sud,Sfax,Mellita,Cotière,Raie,P.blanc,362.1,2020
+31/08/2020,Sud,Sfax,Kratten,Cotière,Roussette,P.blanc,994,2020
+31/08/2020,Sud,Sfax,Kratten,Cotière,Raie,P.blanc,1917,2020
+31/08/2020,Sud,Sfax,Attaya,Cotière,Chien de mer,P.blanc,2215.2,2020
+31/08/2020,Sud,Sfax,Attaya,Cotière,Raie,P.blanc,2840,2020
+30/09/2020,Sud,Gabes,Gabes,Cotière,Chien de mer,P.blanc,1278,2020
+30/09/2020,Sud,Gabes,Gabes,Cotière,Raie,P.blanc,1178.6,2020
+30/09/2020,Sud,Medenine,Zarzis,Cotière,Chien de mer,P.blanc,25845.42,2020
+30/09/2020,Sud,Medenine,Zarzis,Cotière,Emissole,P.blanc,3354.04,2020
+30/09/2020,Sud,Medenine,Zarzis,Cotière,Ange de mer,P.blanc,13490,2020
+30/09/2020,Sud,Medenine,Houmtsouk,Cotière,Chien de mer,P.blanc,497,2020
+30/09/2020,Sud,Medenine,Houmtsouk,Cotière,Raie,P.blanc,837.8,2020
+30/09/2020,Sud,Medenine,Ajim,Cotière,Raie,P.blanc,127.8,2020
+30/09/2020,Sud,Medenine,Elketf,Cotière,Chien de mer,P.blanc,2456.6,2020
+30/09/2020,Sud,Medenine,Elketf,Cotière,Emissole,P.blanc,3053,2020
+30/09/2020,Sud,Medenine,Elketf,Cotière,Raie,P.blanc,752.6,2020
+30/09/2020,Sud,Medenine,Hassi Jallaba,Cotière,Ange de mer,P.blanc,1633,2020
+30/09/2020,Sud,Medenine,Elgreen,Cotière,Raie,P.blanc,127.8,2020
+30/09/2020,Sud,Sfax,Mahres,Cotière,Chien de mer,P.blanc,1079.2,2020
+30/09/2020,Sud,Sfax,Skhira,Cotière,Chien de mer,P.blanc,1278,2020
+30/09/2020,Sud,Sfax,Kratten,Cotière,Roussette,P.blanc,1136,2020
+31/10/2020,Sud,Gabes,Gabes,Cotière,Chien de mer,P.blanc,3337,2020
+31/10/2020,Sud,Medenine,Zarzis,Chalut benthique,Raie,P.blanc,549.9,2020
+31/10/2020,Sud,Medenine,Zarzis,Chalut benthique,Ange de mer,P.blanc,35.1,2020
+31/10/2020,Sud,Medenine,Zarzis,Cotière,Chien de mer,P.blanc,4661.86,2020
+31/10/2020,Sud,Medenine,Zarzis,Cotière,Emissole,P.blanc,1753.7,2020
+31/10/2020,Sud,Medenine,Zarzis,Cotière,Raie,P.blanc,19013.8,2020
+31/10/2020,Sud,Medenine,Zarzis,Cotière,Ange de mer,P.blanc,2492.1,2020
+31/10/2020,Sud,Medenine,Houmtsouk,Cotière,Chien de mer,P.blanc,1420,2020
+31/10/2020,Sud,Medenine,Houmtsouk,Cotière,Emissole,P.blanc,1050.8,2020
+31/10/2020,Sud,Medenine,Houmtsouk,Cotière,Raie,P.blanc,1689.8,2020
+31/10/2020,Sud,Medenine,Ajim,Cotière,Raie,P.blanc,383.4,2020
+31/10/2020,Sud,Medenine,Elketf,Cotière,Chien de mer,P.blanc,738.4,2020
+31/10/2020,Sud,Medenine,Elketf,Cotière,Emissole,P.blanc,3266,2020
+31/10/2020,Sud,Medenine,Elketf,Cotière,Raie,P.blanc,4544,2020
+31/10/2020,Sud,Medenine,Elgreen,Cotière,Raie,P.blanc,284,2020
+31/10/2020,Sud,Sfax,Sfax,Chalut benthique,Chien de mer,P.blanc,2359.89,2020
+31/10/2020,Sud,Sfax,Sfax,Chalut benthique,Roussette,P.blanc,4593.42,2020
+31/10/2020,Sud,Sfax,Sfax,Chalut benthique,Raie,P.blanc,4323.15,2020
+31/10/2020,Sud,Sfax,Mahres,Cotière,Chien de mer,P.blanc,937.2,2020
+31/10/2020,Sud,Sfax,Skhira,Cotière,Chien de mer,P.blanc,2130,2020
+30/11/2020,Sud,Gabes,Gabes,Cotière,Chien de mer,P.blanc,2158.4,2020
+30/11/2020,Sud,Gabes,Gabes,Cotière,Raie,P.blanc,1136,2020
+30/11/2020,Sud,Medenine,Zarzis,Chalut benthique,Emissole,P.blanc,81.9,2020
+30/11/2020,Sud,Medenine,Zarzis,Chalut benthique,Raie,P.blanc,351,2020
+30/11/2020,Sud,Medenine,Zarzis,Cotière,Chien de mer,P.blanc,28428.4,2020
+30/11/2020,Sud,Medenine,Zarzis,Cotière,Emissole,P.blanc,3599.7,2020
+30/11/2020,Sud,Medenine,Zarzis,Cotière,Raie,P.blanc,24459.5,2020
+30/11/2020,Sud,Medenine,Zarzis,Cotière,Ange de mer,P.blanc,7107.1,2020
+30/11/2020,Sud,Medenine,Houmtsouk,Cotière,Chien de mer,P.blanc,99.4,2020
+30/11/2020,Sud,Medenine,Houmtsouk,Cotière,Raie,P.blanc,3223.4,2020
+30/11/2020,Sud,Medenine,Ajim,Cotière,Raie,P.blanc,340.8,2020
+30/11/2020,Sud,Medenine,Elketf,Cotière,Chien de mer,P.blanc,596.4,2020
+30/11/2020,Sud,Medenine,Elketf,Cotière,Emissole,P.blanc,6702.4,2020
+30/11/2020,Sud,Medenine,Elketf,Cotière,Raie,P.blanc,4402,2020
+30/11/2020,Sud,Medenine,Elgreen,Cotière,Raie,P.blanc,284,2020
+30/11/2020,Sud,Sfax,Sfax,Chalut benthique,Chien de mer,P.blanc,3704.22,2020
+30/11/2020,Sud,Sfax,Sfax,Chalut benthique,Roussette,P.blanc,4650.75,2020
+30/11/2020,Sud,Sfax,Sfax,Chalut benthique,Raie,P.blanc,4220.19,2020
+30/11/2020,Sud,Sfax,Mellita,Cotière,Roussette,P.blanc,2272,2020
+30/11/2020,Sud,Sfax,Mellita,Cotière,Raie,P.blanc,994,2020
+31/12/2020,Sud,Medenine,Zarzis,Cotière,Emissole,P.blanc,4338.1,2020
+31/12/2020,Sud,Medenine,Zarzis,Cotière,Raie,P.blanc,17537,2020
+31/12/2020,Sud,Medenine,Zarzis,Cotière,Ange de mer,P.blanc,923,2020
+31/12/2020,Sud,Medenine,Houmtsouk,Cotière,Chien de mer,P.blanc,1093.4,2020
+31/12/2020,Sud,Medenine,Houmtsouk,Cotière,Raie,P.blanc,2428.2,2020
+31/12/2020,Sud,Medenine,Houmtsouk,Cotière,Ange de mer,P.blanc,2570.2,2020
+31/12/2020,Sud,Medenine,Ajim,Cotière,Raie,P.blanc,255.6,2020
+31/12/2020,Sud,Medenine,Boughrara,Cotière,Raie,P.blanc,426,2020
+31/12/2020,Sud,Medenine,Elketf,Cotière,Chien de mer,P.blanc,923,2020
+31/12/2020,Sud,Medenine,Elketf,Cotière,Emissole,P.blanc,3550,2020
+31/12/2020,Sud,Medenine,Elketf,Cotière,Raie,P.blanc,653.2,2020
+31/12/2020,Sud,Medenine,Biban,Lagunaire,Raie,P.blanc,50,2020
+31/12/2020,Sud,Medenine,Hassi Jallaba,Cotière,Raie,P.blanc,142,2020
+31/12/2020,Sud,Medenine,Elgreen,Cotière,Raie,P.blanc,142,2020
+31/12/2020,Sud,Sfax,Sfax,Chalut benthique,Chien de mer,P.blanc,1473.03,2020
+31/12/2020,Sud,Sfax,Sfax,Chalut benthique,Roussette,P.blanc,2022.93,2020
+31/12/2020,Sud,Sfax,Sfax,Chalut benthique,Raie,P.blanc,3637.53,2020
+31/12/2020,Sud,Sfax,Mellita,Cotière,Roussette,P.blanc,4998.4,2020
+31/12/2020,Sud,Sfax,Kratten,Cotière,Roussette,P.blanc,1420,2020
+31/12/2020,Sud,Sfax,Attaya,Cotière,Roussette,P.blanc,6191.2,2020

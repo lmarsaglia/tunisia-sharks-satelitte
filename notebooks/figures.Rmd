@@ -1,0 +1,253 @@
+---
+title: "figures"
+output: html_notebook
+---
+
+
+```{r libraries}
+
+
+```
+
+```{r layers}
+
+#spatial extent of analysis #5.08,32.49,14.8,39.5
+lonRange = c(5.08,14.8)
+latRange = c(32.49,39.5)
+
+#create port_df
+port_df <- data.frame(port_name = character(), lat = numeric(), lon = numeric(), stringsAsFactors = FALSE)
+
+port_df <- rbind(port_df, list(port_name = "Mahdia", lat = 35.508, lon = 11.074))
+port_df <- rbind(port_df, list(port_name = "Chebba", lat = 35.257, lon = 11.088))
+port_df <- rbind(port_df, list(port_name = "Monastir", lat = 35.769, lon = 10.827))
+port_df <- rbind(port_df, list(port_name = "Ksibet el Madiouni", lat = 35.692000, lon = 10.846550))
+port_df <- rbind(port_df, list(port_name = "Khnis", lat = 35.692000, lon = 10.846550))
+port_df <- rbind(port_df, list(port_name = "Teboulba", lat = 35.712087, lon = 10.825366))
+port_df <- rbind(port_df, list(port_name = "Bekalta", lat = 35.623603, lon = 11.048879))
+port_df <- rbind(port_df, list(port_name = "Sousse", lat = 36.452164, lon = 10.795407))
+port_df <- rbind(port_df, list(port_name = "Zarzis", lat = 33.491251, lon = 11.119029))
+port_df <- rbind(port_df, list(port_name = "Houmtsouk", lat = 33.887684, lon = 10.85672))
+port_df <- rbind(port_df, list(port_name = "Sfax", lat = 34.716612, lon = 10.766890)) 
+port_df <- rbind(port_df, list(port_name = "Sidi Abdelhamid", lat = 35.823694, lon = 10.642782))
+port_df <- rbind(port_df, list(port_name = "Mellita", lat = 34.658339, lon = 10.968949))
+port_df <- rbind(port_df, list(port_name = "Attaya", lat = 34.743520, lon = 11.305214))
+port_df <- rbind(port_df, list(port_name = "Gabes", lat = 33.895246, lon = 10.117187))
+port_df <- rbind(port_df, list(port_name = "Zarrat", lat = 33.701078, lon = 10.363054))
+port_df <- rbind(port_df, list(port_name = "Ajim", lat = 33.717373, lon = 10.743168))
+port_df <- rbind(port_df, list(port_name = "Sidi Mansour", lat = 34.785675, lon = 10.867221))
+port_df <- rbind(port_df, list(port_name = "Zabboussa", lat = 34.347573, lon = 10.211114))
+port_df <- rbind(port_df, list(port_name = "Ellouza", lat = 35.042873, lon = 11.034691))
+port_df <- rbind(port_df, list(port_name = "Ghannouche", lat = 33.991816, lon = 10.054349))
+port_df <- rbind(port_df, list(port_name = "Skhira", lat = 34.287108, lon = 10.096974))
+port_df <- rbind(port_df, list(port_name = "Kratten", lat = 34.829223, lon = 11.256688))
+port_df <- rbind(port_df, list(port_name = "Sayada", lat = 35.674629, lon = 10.893365))
+port_df <- rbind(port_df, list(port_name = "Mahres", lat = 34.514944, lon = 10.498170))
+port_df <- rbind(port_df, list(port_name = "Bizerte", lat = 37.276054, lon = 9.882177))
+port_df <- rbind(port_df, list(port_name = "Kélibia", lat = 36.833231, lon = 11.111781))
+port_df <- rbind(port_df, list(port_name = "La Goulette", lat = 36.808443, lon = 10.309133))
+port_df <- rbind(port_df, list(port_name = "Tabarka", lat = 36.959591, lon = 8.761551))
+
+#load land layer
+land = ne_states(geounit= c('italy','tunisia','malta','algeria','libya'),returnclass = 'sf')
+
+#load GSA layer
+gsas = read_sf(here('shapefiles', 'GSAs_simplified.shp'))
+
+poligons_gsas = st_as_sf(gsas) %>% st_set_crs(4326) %>%
+  filter(SECT_COD %in% c('GSA12', 'GSA13', 'GSA14'))
+
+bboxgsa = poligons_gsas %>% filter(SECT_COD %in% c('GSA12','GSA13','GSA14') ) %>% st_bbox()
+
+st_bbox(bboxgsa)
+
+port_df_otb = port_df %>% 
+  filter(port_name %in% c("Mahdia","Chebba","Monastir","Sayada",
+                          "Teboulba","Sousse",                          "Bizerte","Tabarka","Kélibia","La Goulette", "Zarzis","Sfax", "El Awabid")) 
+
+write_rds(port_df_otb, here('data','port_df_otb.Rdata'))
+
+```
+
+
+```{r}
+
+
+#GRID
+grid_plot = df_sf %>% 
+ggplot() + 
+  geom_sf(aes(fill = n_detections))+
+  scale_fill_gradient(  low = "white",high="#F67280",
+                    guide = guide_legend(reverse = TRUE),limits = c(0, 300), oob = scales::squish)+
+    geom_sf(data = poligons_gsas, colour = "blue", size = .3, fill = NA)+
+     geom_sf(data = land, size = .1, fill = "Gray40",color="Gray40") +
+  ggrepel::geom_label_repel(
+        data = gsa,aes(x = CENTER_X, y = CENTER_Y, label = SECT_COD),
+        size = 3, family = "Arial",
+        label.padding = unit(.1, "lines"), alpha = .7) +
+  theme(legend.position="right",
+        plot.title = element_text(hjust = 0.5,color = "Gray40", size = 16, face = "bold"),
+        plot.subtitle = element_text(color = "blue"),
+        plot.caption = element_text(color = "Gray60"),
+        axis.text.x=element_blank(), 
+      axis.ticks.x=element_blank(), 
+      axis.text.y=element_blank(), 
+      axis.ticks.y=element_blank())+ 
+  guides(fill = guide_legend(title = "N.detections / 0.1 cell", title.position = "bottom", title.theme =element_text(size = 10, face = "bold",colour = "gray70",angle = 0))) +   
+  coord_sf(xlim = c(bboxgsa$xmin,bboxgsa$xmax), ylim = c(bboxgsa$ymin,bboxgsa$ymax)) + 
+    labs(x = NULL, y = NULL)
+
+
+ ggsave( filename = here::here('figures', "detections_by_0.1_grid.png"),width = 30, height = 20, units = "cm")
+
+#point
+point_df= st_as_sf(detections, coords = c("detect_lon", "detect_lat"), crs = wgs) %>% mutate(new = rep('', nrow(detections)))
+
+point_plot = ggplot() + 
+geom_point(data=detections, aes(x=detect_lon,y=detect_lat,colour = ""),size = 0.1, stroke = 0) +
+    scale_color_manual(name = "", values = "#F67280")+
+
+    geom_sf(data = poligons_gsas, colour = "blue", size = .3, fill = NA)+
+     geom_sf(data = land, size = .1, fill = "Gray40",color="Gray40") +
+  ggrepel::geom_label_repel(
+        data = gsa,aes(x = CENTER_X, y = CENTER_Y, label = SECT_COD),
+        size = 3, family = "Arial",
+        label.padding = unit(.1, "lines"), alpha = .7) +
+  theme(panel.background = element_rect(fill = "white"),
+    legend.position="right",
+        plot.title = element_text(hjust = 0.5,color = "Gray40", size = 16, face = "bold"),
+        plot.subtitle = element_text(color = "blue"),
+        plot.caption = element_text(color = "Gray60"),
+        axis.text.x=element_blank(), 
+      axis.ticks.x=element_blank(), 
+      axis.text.y=element_blank(), 
+      axis.ticks.y=element_blank())+ 
+  guides(color = guide_legend(title = "Raw SAR detections", title.position = "bottom", title.theme =element_text(size = 10, face = "bold",colour = "gray70",angle = 0))) +   
+  coord_sf(xlim = c(bboxgsa$xmin,bboxgsa$xmax), ylim = c(bboxgsa$ymin,bboxgsa$ymax)) +
+    labs(x = NULL, y = NULL)
+
+
+
+ggsave( filename = here::here('figures', "detections_by_0.1_grid.png"),width = 20, height = 20, units = "cm")
+
+#SKATE group
+cluster = df_sf %>% 
+ggplot()+
+  geom_sf(aes(fill = as.factor(skate_groups)),color=NA)+
+  scale_fill_manual(values = c("blue", "brown", "pink","yellow","green","orange","cyan","grey","black","purple","tan" ), name = "My name", 
+                    guide = guide_legend(reverse = TRUE))+
+     geom_sf(data = poligons_gsas, colour = "white", size = .3, fill = NA)+
+     geom_sf(data = land, size = .1, fill = "Gray40",color="Gray40") +
+  ggrepel::geom_label_repel(
+        data = gsa,aes(x = CENTER_X, y = CENTER_Y, label = SECT_COD),
+        size = 3, family = "Arial",
+        label.padding = unit(.1, "lines"), alpha = .7) +
+  theme(panel.background = element_rect(fill = "white"),
+    legend.position="right",
+        plot.title = element_text(hjust = 0.5,color = "Gray40", size = 16, face = "bold"),
+        plot.subtitle = element_text(color = "blue"),
+        plot.caption = element_text(color = "Gray60"),
+        axis.text.x=element_blank(), 
+      axis.ticks.x=element_blank(), 
+      axis.text.y=element_blank(), 
+      axis.ticks.y=element_blank())+ 
+  theme(legend.position="right",
+        plot.title = element_text(hjust = 0.5,color = "Gray40", size = 16, face = "bold"),
+        plot.subtitle = element_text(color = "blue"),
+        plot.caption = element_text(color = "Gray60"))+ 
+  guides(fill = guide_legend(title = "skater cluster groups", title.position = "bottom", title.theme =element_text(size = 10, face = "bold",colour = "gray70",angle = 0)))  +
+  coord_sf(xlim = c(bboxgsa$xmin,bboxgsa$xmax), ylim = c(bboxgsa$ymin,bboxgsa$ymax)) +
+    labs(x = NULL, y = NULL)
+  
+
+
+ggsave( filename = here::here('figures', "skater_by_0.1_grid.png"),width = 30, height = 20, units = "cm")
+
+ggarrange(point_plot, grid_plot, cluster, ncol=3, nrow=1, legend= "bottom",align = "h")
+
+ ggsave( filename = here::here('figures', "detection_to_cluster.png"),width = 30, height = 20, units = "cm")
+
+```
+
+
+```{r landing viz}
+``{r calculate percentages and number of landings by port, warning=FALSE, echo=FALSE,message=FALSE}
+#percentages for RAYS by port and gear 
+elasmo_landings_rays = elasmo_landings_all %>% filter(ESPECE =='Rays') %>% group_by(Port,T.PECHE) %>%
+  summarise(landing = sum(QR,na.rm=TRUE)) 
+
+landings_port_peche_perc = elasmo_landings_rays %>% 
+  mutate(perc = round(digit=1,(landing / sum(elasmo_landings_all_rays$landing))*100)) %>% 
+  dplyr::select(Port,T.PECHE,perc) %>%
+spread(key = T.PECHE, value = perc) %>% write_csv(here('data/all_tunisia','perc_port_landings_rays.csv'))
+
+#percentages for SHARKS by port and gear 
+elasmo_landings_all_sharks = elasmo_landings_all %>% filter(ESPECE =='Sharks') %>% group_by(Port,T.PECHE) %>%
+  summarise(landing = sum(QR,na.rm=TRUE)) 
+
+landings_port_peche_perc = elasmo_landings_all_sharks %>% 
+  mutate(perc = round(digit=1,(landing / sum(elasmo_landings_all_sharks$landing))*100)) %>% 
+  dplyr::select(Port,T.PECHE,perc) %>%
+spread(key = T.PECHE, value = perc) %>% write_csv(here('data/all_tunisia','perc_port_landings_sharks.csv'))
+
+
+#geom bars with landingsby port
+my_palette = c("OTB" = "#f1816f", "Cotière" = "#c77ca1", "Feu" = "#eee981")
+
+p <- elasmo_landings_all %>% 
+  group_by(Port, T.PECHE, ESPECE) %>% 
+  summarise(landing=sum(QR)) %>% 
+  ggplot(aes(x = reorder(Port, landing), y = landing, fill = T.PECHE)) + 
+       geom_bar(stat = "identity") + 
+       labs(title = "Elasmobranchs landings by port",
+                   subtitle = "from 2017 to 2021",
+                   x = "Port",
+                   y = "Landings (Kg)",fill='Gear')
+
+p + coord_flip() +
+  expand_limits(y = -2) + scale_fill_manual(values = my_palette) + 
+  theme(plot.background = element_rect(fill = "#f7f7f7"),
+        panel.background =  element_rect(fill = "#f7f7f7"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        legend.background = element_rect(fill='#f7f7f7',color='#f7f7f7'),
+        plot.title = element_text(family = 'Arial',
+                                face = 'bold',
+                                color = '#363c4c',
+                                size = 20),
+      plot.subtitle = element_text(family = 'Arial',
+                                   color = '#363c4c',
+                                   size = 18),
+
+      strip.text = element_text(family = 'Arial',
+                                face = 'bold',
+                                color = '#363c4c',
+                                size = 14),
+        
+      legend.text = element_text(family = 'Arial',
+                                 color = '#848b9b',
+                                 size = 14),
+      legend.title = element_text(family = 'Arial',
+                                  face = 'bold',
+                                  color = '#363c4c',
+                                  size = 16),
+      legend.position = 'bottom',
+      legend.box = 'vertical',
+      legend.key.height = unit(3, 'mm'),
+      legend.key.width = unit(20,'mm'),
+      axis.title = element_text(family = 'Arial',
+                                face = 'bold',
+                                color = '#848b9b',
+                                size = 16),
+      axis.text = element_text(family = 'Arial',
+                              color = '#848b9b',
+                              size = 14),
+      strip.background = element_rect(color="#c5c6d9", fill="#c5c6d9", linetype="solid"),
+      plot.margin=grid::unit(c(0.2,0.2,0.2,0.2), "cm")) + 
+  facet_wrap(~ESPECE) 
+
+ggsave(filename = here::here('figures/all_tunisia', "Elasmo by port.png"),width = 40, height = 25, units = "cm")
+```
+
+```
+

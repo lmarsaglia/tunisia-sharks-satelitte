@@ -1,0 +1,428 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(bigrquery) #because we love running queries
+library(fishwatchr) #coolest package ever
+library(dplyr) #manipulate 
+library(tidyr) #manipulate more
+library(rnaturalearth) #because ne_states has good land resolution 
+library(ggplot2) #how could we live w/out
+library(viridis) #nice colors
+library(sf) #spatial data usage
+library(raster) #grids.. 
+library(countrycode) #never worry about iso codes again
+library(ggimage) #flagssss
+library(ggridges) #cool matrix viz
+library(ggpubr)
+library(readr)
+library(stringr) 
+library(here) # now I know the path forward
+
+
+con <- DBI::dbConnect(drv = bigrquery::bigquery(), 
+                   project = "world-fishing-827", 
+               use_legacy_sql = FALSE)
+
+options(scipen=999)
+
+```
+
+```{r}
+#spatial extent of analysis #5.08,32.49,14.8,39.5
+
+lonRange = c(5.08,14.8)
+latRange = c(32.49,39.5)
+
+#create port_df
+port_df <- data.frame(port_name = character(), lat = numeric(), lon = numeric(), stringsAsFactors = FALSE)
+
+port_df <- rbind(port_df, list(port_name = "Mahdia", lat = 35.508, lon = 11.074))
+port_df <- rbind(port_df, list(port_name = "Chebba", lat = 35.257, lon = 11.088))
+port_df <- rbind(port_df, list(port_name = "Monastir", lat = 35.769, lon = 10.827))
+port_df <- rbind(port_df, list(port_name = "Ksibet el Madiouni", lat = 35.692000, lon = 10.846550))
+port_df <- rbind(port_df, list(port_name = "Khnis", lat = 35.692000, lon = 10.846550))
+port_df <- rbind(port_df, list(port_name = "Teboulba", lat = 35.712087, lon = 10.825366))
+port_df <- rbind(port_df, list(port_name = "Bekalta", lat = 35.623603, lon = 11.048879))
+port_df <- rbind(port_df, list(port_name = "Sousse", lat = 36.452164, lon = 10.795407))
+port_df <- rbind(port_df, list(port_name = "Zarzis", lat = 33.491251, lon = 11.119029))
+port_df <- rbind(port_df, list(port_name = "Houmtsouk", lat = 33.887684, lon = 10.85672))
+port_df <- rbind(port_df, list(port_name = "Sfax", lat = 34.716612, lon = 10.766890)) 
+port_df <- rbind(port_df, list(port_name = "Sidi Abdelhamid", lat = 35.823694, lon = 10.642782))
+port_df <- rbind(port_df, list(port_name = "Mellita", lat = 34.658339, lon = 10.968949))
+port_df <- rbind(port_df, list(port_name = "Attaya", lat = 34.743520, lon = 11.305214))
+port_df <- rbind(port_df, list(port_name = "Gabes", lat = 33.895246, lon = 10.117187))
+port_df <- rbind(port_df, list(port_name = "Zarrat", lat = 33.701078, lon = 10.363054))
+port_df <- rbind(port_df, list(port_name = "Ajim", lat = 33.717373, lon = 10.743168))
+port_df <- rbind(port_df, list(port_name = "Sidi Mansour", lat = 34.785675, lon = 10.867221))
+port_df <- rbind(port_df, list(port_name = "Zabboussa", lat = 34.347573, lon = 10.211114))
+port_df <- rbind(port_df, list(port_name = "Ellouza", lat = 35.042873, lon = 11.034691))
+port_df <- rbind(port_df, list(port_name = "Ghannouche", lat = 33.991816, lon = 10.054349))
+port_df <- rbind(port_df, list(port_name = "Skhira", lat = 34.287108, lon = 10.096974))
+port_df <- rbind(port_df, list(port_name = "Kratten", lat = 34.829223, lon = 11.256688))
+port_df <- rbind(port_df, list(port_name = "Sayada", lat = 35.674629, lon = 10.893365))
+port_df <- rbind(port_df, list(port_name = "Mahres", lat = 34.514944, lon = 10.498170))
+port_df <- rbind(port_df, list(port_name = "Bizerte", lat = 37.276054, lon = 9.882177))
+port_df <- rbind(port_df, list(port_name = "Kélibia", lat = 36.833231, lon = 11.111781))
+port_df <- rbind(port_df, list(port_name = "La Goulette", lat = 36.808443, lon = 10.309133))
+port_df <- rbind(port_df, list(port_name = "Tabarka", lat = 36.959591, lon = 8.761551))
+
+#load land layer
+land = ne_states(geounit= c('italy','tunisia','malta','algeria','libya'),returnclass = 'sf')
+
+#load GSA layer
+gsas = read_sf(here::here('shapefiles', 'GSAs_simplified.shp'))
+
+poligons_gsas = st_as_sf(gsas) %>% st_set_crs(4326) %>%
+  filter(SECT_COD %in% c('GSA12', 'GSA13', 'GSA14'))
+
+bboxgsa = poligons_gsas %>% filter(SECT_COD %in% c('GSA12','GSA13','GSA14') ) %>% st_bbox()
+
+st_bbox(bboxgsa)
+
+port_df_otb = port_df %>% 
+  filter(port_name %in% c("Mahdia","Chebba","Monastir","Sayada",
+                          "Teboulba","Sousse",                          "Bizerte","Tabarka","Kélibia","La Goulette", "Zarzis","Sfax", "El Awabid")) 
+
+write_rds(port_df_otb, here('data','port_df_otb.Rdata'))
+
+  #plot ports name and locations
+p = ggplot() +  geom_sf(data = land, lwd = 0,fill='#F6F6F4', color='#F6F6F4') + 
+    geom_sf(data = poligons_gsas, aes(), color='#3c3c3b', lwd = 0.4, alpha=0.01) + geom_point(data=port_df_otb,aes(lon,lat), fill = '#3c3c3b', size=3, alpha=0.4) + # Show dots
+  geom_text(data=port_df_otb, aes(lon,lat,label=port_name),nudge_x = -0.01, nudge_y = 0.1, 
+    check_overlap = F,family = 'Arial',
+                               face = 'bold',
+                                color = '#363c4c',
+                               size = 3) + 
+  theme(panel.background = element_rect(fill = "#C9D2D3"),
+        panel.grid.major = element_line(color = "#B2BEB5",),
+      plot.title = element_text(family = 'Arial',
+                                face = 'bold',
+                                color = '#363c4c',
+                                size = 20),
+      plot.subtitle = element_text(family = 'Arial',
+                                   color = '#363c4c',
+                                   size = 18),
+
+      strip.text = element_text(family = 'Arial',
+                                face = 'bold',
+                                color = '#363c4c',
+                                size = 18),
+        
+      legend.text = element_text(family = 'Arial',
+                                 color = '#848b9b',
+                                 size = 18),
+      legend.title = element_text(family = 'Arial',
+                                  face = 'bold',
+                                  color = '#363c4c',
+                                  size = 18),
+      legend.position = 'bottom',
+      legend.box = 'vertical',
+      legend.key.height = unit(3, 'mm'),
+      legend.key.width = unit(20,'mm'),
+      axis.title = element_text(family = 'Arial',
+                                face = 'bold',
+                                color = '#848b9b',
+                                size = 22),
+      axis.text = element_text(family = 'Arial',
+                               color = '#848b9b',
+                               size = 20,
+                               face = 'bold'),
+      strip.background = element_rect(color="#d6c7db", fill="#d6c7db", linetype="solid"
+     ),
+     plot.margin=grid::unit(c(0.2,0.2,0.2,0.2), "mm")) +
+  labs(x = "Longitude", y= "Latitude") +
+      coord_sf(xlim = c(bboxgsa$xmin,bboxgsa$xmax), ylim = c(bboxgsa$ymin,bboxgsa$ymax)) 
+p
+
+ggsave(filename = here::here('figures', "all_tun_Ports.png"),width = 30, height = 20, units = "cm")
+```
+
+
+```{r}
+#spatial extent of analysis #5.08,32.49,14.8,39.5
+
+lonRange = c(5.08,14.8)
+latRange = c(32.49,39.5)
+
+#create port_df
+port_df <- data.frame(port_name = character(), lat = numeric(), lon = numeric(), stringsAsFactors = FALSE)
+
+port_df <- rbind(port_df, list(port_name = "Mahdia", lat = 35.508, lon = 11.074))
+port_df <- rbind(port_df, list(port_name = "Chebba", lat = 35.257, lon = 11.088))
+port_df <- rbind(port_df, list(port_name = "Monastir", lat = 35.769, lon = 10.827))
+port_df <- rbind(port_df, list(port_name = "Ksibet el Madiouni", lat = 35.692000, lon = 10.846550))
+port_df <- rbind(port_df, list(port_name = "Khnis", lat = 35.692000, lon = 10.846550))
+port_df <- rbind(port_df, list(port_name = "Teboulba", lat = 35.712087, lon = 10.825366))
+port_df <- rbind(port_df, list(port_name = "Bekalta", lat = 35.623603, lon = 11.048879))
+port_df <- rbind(port_df, list(port_name = "Sousse", lat = 36.452164, lon = 10.795407))
+port_df <- rbind(port_df, list(port_name = "Zarzis", lat = 33.491251, lon = 11.119029))
+port_df <- rbind(port_df, list(port_name = "Houmtsouk", lat = 33.887684, lon = 10.85672))
+port_df <- rbind(port_df, list(port_name = "Sfax", lat = 34.716612, lon = 10.766890)) 
+port_df <- rbind(port_df, list(port_name = "Sidi Abdelhamid", lat = 35.823694, lon = 10.642782))
+port_df <- rbind(port_df, list(port_name = "Mellita", lat = 34.658339, lon = 10.968949))
+port_df <- rbind(port_df, list(port_name = "Attaya", lat = 34.743520, lon = 11.305214))
+port_df <- rbind(port_df, list(port_name = "Gabes", lat = 33.895246, lon = 10.117187))
+port_df <- rbind(port_df, list(port_name = "Zarrat", lat = 33.701078, lon = 10.363054))
+port_df <- rbind(port_df, list(port_name = "Ajim", lat = 33.717373, lon = 10.743168))
+port_df <- rbind(port_df, list(port_name = "Sidi Mansour", lat = 34.785675, lon = 10.867221))
+port_df <- rbind(port_df, list(port_name = "Zabboussa", lat = 34.347573, lon = 10.211114))
+port_df <- rbind(port_df, list(port_name = "Ellouza", lat = 35.042873, lon = 11.034691))
+port_df <- rbind(port_df, list(port_name = "Ghannouche", lat = 33.991816, lon = 10.054349))
+port_df <- rbind(port_df, list(port_name = "Skhira", lat = 34.287108, lon = 10.096974))
+port_df <- rbind(port_df, list(port_name = "Kratten", lat = 34.829223, lon = 11.256688))
+port_df <- rbind(port_df, list(port_name = "Sayada", lat = 35.674629, lon = 10.893365))
+port_df <- rbind(port_df, list(port_name = "Mahres", lat = 34.514944, lon = 10.498170))
+port_df <- rbind(port_df, list(port_name = "Bizerte", lat = 37.276054, lon = 9.882177))
+port_df <- rbind(port_df, list(port_name = "Kélibia", lat = 36.833231, lon = 11.111781))
+port_df <- rbind(port_df, list(port_name = "La Goulette", lat = 36.808443, lon = 10.309133))
+port_df <- rbind(port_df, list(port_name = "Tabarka", lat = 36.959591, lon = 8.761551))
+
+#load land layer
+land = ne_states(geounit= c('italy','tunisia','malta','algeria','libya'),returnclass = 'sf')
+
+#load GSA layer
+gsas = read_sf(here('shapefiles', 'GSAs_simplified.shp'))
+
+poligons_gsas = st_as_sf(gsas) %>% st_set_crs(4326) %>%
+  filter(SECT_COD %in% c('GSA12', 'GSA13', 'GSA14'))
+
+bboxgsa = poligons_gsas %>% filter(SECT_COD %in% c('GSA12','GSA13','GSA14') ) %>% st_bbox()
+
+st_bbox(bboxgsa)
+
+port_df_otb = port_df %>% 
+  filter(port_name %in% c("Mahdia","Chebba","Monastir","Sayada",
+                          "Teboulba","Sousse",                          "Bizerte","Tabarka","Kélibia","La Goulette", "Zarzis","Sfax", "El Awabid")) 
+
+write_rds(port_df_otb, here('data','port_df_otb.Rdata'))
+
+  #plot ports name and locations
+p = ggplot() +  
+  geom_sf(data = land, lwd = 0,fill='#F6F6F4', color='#F6F6F4') + 
+    geom_sf(data = poligons_gsas, aes(), color='#3c3c3b', lwd = 0.4, alpha=0.01) + geom_point(data=port_df_otb,aes(lon,lat), fill = '#3c3c3b', size=3, alpha=0.4) + # Show dots
+  geom_text(data=port_df_otb, aes(lon,lat,label=port_name),nudge_x = -0.01, nudge_y = 0.1, 
+    check_overlap = F,family = 'Arial',
+                               face = 'bold',
+                                color = '#363c4c',
+                               size = 3) + 
+  theme(panel.background = element_rect(fill = "#C9D2D3"),
+        panel.grid.major = element_line(color = "#B2BEB5",),
+      plot.title = element_text(family = 'Arial',
+                                face = 'bold',
+                                color = '#363c4c',
+                                size = 20),
+      plot.subtitle = element_text(family = 'Arial',
+                                   color = '#363c4c',
+                                   size = 18),
+
+      strip.text = element_text(family = 'Arial',
+                                face = 'bold',
+                                color = '#363c4c',
+                                size = 18),
+        
+      legend.text = element_text(family = 'Arial',
+                                 color = '#848b9b',
+                                 size = 18),
+      legend.title = element_text(family = 'Arial',
+                                  face = 'bold',
+                                  color = '#363c4c',
+                                  size = 18),
+      legend.position = 'bottom',
+      legend.box = 'vertical',
+      legend.key.height = unit(3, 'mm'),
+      legend.key.width = unit(20,'mm'),
+      axis.title = element_text(family = 'Arial',
+                                face = 'bold',
+                                color = '#848b9b',
+                                size = 22),
+      axis.text = element_text(family = 'Arial',
+                               color = '#848b9b',
+                               size = 20,
+                               face = 'bold'),
+      strip.background = element_rect(color="#d6c7db", fill="#d6c7db", linetype="solid"
+     ),
+     plot.margin=grid::unit(c(0.2,0.2,0.2,0.2), "mm")) +
+  labs(x = "Longitude", y= "Latitude") +
+      coord_sf(xlim = c(bboxgsa$xmin,bboxgsa$xmax), ylim = c(bboxgsa$ymin,bboxgsa$ymax)) 
+p
+
+ggsave(filename = here::here('figures', "all_tun_Ports.png"),width = 30, height = 20, units = "cm")
+```
+
+
+```{r load and clean elasmo data, warning=FALSE, echo=FALSE,message=FALSE}
+elasmo_landings = read_csv(here('data', 'elasmo_landings.csv'))
+
+# Convert the French month abbreviations to English abbreviations
+elasmo_landings$n_date <- case_when(
+  grepl("janv.", elasmo_landings$DATE) ~ gsub("janv.", "jan", elasmo_landings$DATE),
+  grepl("févr.", elasmo_landings$DATE) ~ gsub("févr.", "feb", elasmo_landings$DATE),
+  grepl("mars", elasmo_landings$DATE) ~ gsub("mars", "mar", elasmo_landings$DATE),
+  grepl("avr.", elasmo_landings$DATE) ~ gsub("avr.", "apr", elasmo_landings$DATE),
+  grepl("mai", elasmo_landings$DATE) ~ gsub("mai", "may", elasmo_landings$DATE),
+  grepl("juin", elasmo_landings$DATE) ~ gsub("juin", "jun", elasmo_landings$DATE),
+  grepl("juil.", elasmo_landings$DATE) ~ gsub("juil.", "jul", elasmo_landings$DATE),
+  grepl("août", elasmo_landings$DATE) ~ gsub("août", "aug", elasmo_landings$DATE),
+  grepl("sept.", elasmo_landings$DATE) ~ gsub("sept.", "sep", elasmo_landings$DATE),
+  grepl("oct.", elasmo_landings$DATE) ~ gsub("oct.", "oct", elasmo_landings$DATE),
+  grepl("nov.", elasmo_landings$DATE) ~ gsub("nov.", "nov", elasmo_landings$DATE),
+  grepl("déc.", elasmo_landings$DATE) ~ gsub("déc.", "dec", elasmo_landings$DATE),
+  TRUE ~ elasmo_landings$DATE
+)
+
+# Extract the two-digit year
+year <- str_sub(elasmo_landings$n_date, start = -2)
+
+# Add the century prefix
+year <- paste0("20", year)
+
+# Update the year component in the modified date
+elasmo_landings$n_date <- str_replace(elasmo_landings$n_date, "-\\d{2}$", paste0("-", year))
+
+library(lubridate)
+# Parse the modified date column using lubridate
+elasmo_landings$date <- parse_date_time(elasmo_landings$n_date, orders = "bY")
+
+# add month year columns
+elasmo_landings$year <- format(elasmo_landings$date, format="%Y") 
+elasmo_landings$month <- format(elasmo_landings$date, format="%m") 
+
+#drop outdated date columns
+elasmo_landings = subset(elasmo_landings, select = -c(DATE,n_date) )
+
+
+# add 2020 data that were shared later
+elasmo_landings_2020 = read_csv(here('data', 'elasmo_2020.csv'))
+elasmo_landings_2020$date <- as.POSIXct(elasmo_landings_2020$DATE, format = "%d/%m/%Y")
+
+elasmo_landings_2020$year <- format(elasmo_landings_2020$date, format="%Y") 
+elasmo_landings_2020$month <- format(elasmo_landings_2020$date, format="%m") 
+elasmo_landings_2020 = subset(elasmo_landings_2020, select = -c(DATE) )
+
+elasmo_landings = rbind(elasmo_landings_2020, elasmo_landings)
+
+# add 2021 data that were shared later
+elasmo_landings_2021 = read_csv(here('data', 'elasmo_2021.csv'))
+elasmo_landings_2021$date <- as.POSIXct(elasmo_landings_2021$DATE, format = "%d/%m/%Y")
+
+elasmo_landings_2021$year <- format(elasmo_landings_2021$date, format="%Y") 
+elasmo_landings_2021$month <- format(elasmo_landings_2021$date, format="%m") 
+elasmo_landings_2021 = subset(elasmo_landings_2021, select = -c(DATE) )
+
+elasmo_landings = rbind(elasmo_landings_2021, elasmo_landings)
+
+
+elasmo_landings_all = elasmo_landings 
+
+elasmo_landings_all$T.PECHE[elasmo_landings_all$T.PECHE == 'Chalut Benthique'] <- 'OTB'
+elasmo_landings_all$T.PECHE[elasmo_landings_all$T.PECHE == 'Chalut benthique'] <- 'OTB'
+elasmo_landings_all$ESPECE[elasmo_landings_all$ESPECE == 'Ange de mer'] <- 'Sharks'
+elasmo_landings_all$ESPECE[elasmo_landings_all$ESPECE == 'Chien de mer'] <- 'Sharks'
+elasmo_landings_all$ESPECE[elasmo_landings_all$ESPECE == 'Emissole'] <- 'Sharks'
+elasmo_landings_all$ESPECE[elasmo_landings_all$ESPECE == 'Roussette'] <- 'Sharks'
+elasmo_landings_all$ESPECE[elasmo_landings_all$ESPECE == 'Raie'] <- 'Rays'
+
+
+elasmo_landings_all = elasmo_landings_all %>% 
+  filter(T.PECHE == 'OTB') 
+
+elasmo_landings_all = elasmo_landings_all %>% mutate(gsa = case_when((Port == "Mahdia") ~ "GSA13",
+                                         (Port == "Chebba") ~ "GSA13",
+                                         (Port == "Monastir") ~ "GSA13",
+                                         (Port == "Sayada") ~ "GSA13",
+                                         (Port == "Teboulba") ~ "GSA13",
+                                         (Port == "Sousse") ~ "GSA13",
+                                         (Port == "Bizerte") ~ "GSA12",
+                                         (Port == "Tabarka") ~ "GSA12",
+                                         (Port == "Kélibia") ~ "GSA13",
+                                         (Port == "La Goulette") ~ "GSA12",
+                                         (Port == "Zarzis") ~ "GSA14",
+                                         (Port == "Sfax") ~ "GSA14",
+                                         (Port == "El Awabid") ~ "GSA13" ))
+
+
+```
+
+Next chunk calculates the shore of landings per port and gear over all years as reported in tables in the doc. I write  a csv and pasting it into gspreadsheet where I find easier to work on conditional formatting
+
+```{r calculate percentages and number of landings by port, warning=FALSE, echo=FALSE,message=FALSE}
+#percentages for RAYS by port and gear 
+elasmo_landings_rays = elasmo_landings_all %>% filter(ESPECE =='Rays') %>% group_by(Port,T.PECHE) %>%
+  summarise(landing = sum(QR,na.rm=TRUE)) 
+
+landings_port_peche_perc = elasmo_landings_rays %>% 
+  mutate(perc = round(digit=1,(landing / sum(elasmo_landings_all_rays$landing))*100)) %>% 
+  dplyr::select(Port,T.PECHE,perc) %>%
+spread(key = T.PECHE, value = perc) %>% write_csv(here('data/all_tunisia','perc_port_landings_rays.csv'))
+
+#percentages for SHARKS by port and gear 
+elasmo_landings_all_sharks = elasmo_landings_all %>% filter(ESPECE =='Sharks') %>% group_by(Port,T.PECHE) %>%
+  summarise(landing = sum(QR,na.rm=TRUE)) 
+
+landings_port_peche_perc = elasmo_landings_all_sharks %>% 
+  mutate(perc = round(digit=1,(landing / sum(elasmo_landings_all_sharks$landing))*100)) %>% 
+  dplyr::select(Port,T.PECHE,perc) %>%
+spread(key = T.PECHE, value = perc) %>% write_csv(here('data/all_tunisia','perc_port_landings_sharks.csv'))
+
+
+#geom bars with landingsby port
+my_palette = c("OTB" = "#f1816f", "Cotière" = "#c77ca1", "Feu" = "#eee981")
+
+p <- elasmo_landings_all %>% 
+  group_by(Port, T.PECHE, ESPECE) %>% 
+  summarise(landing=sum(QR)) %>% 
+  ggplot(aes(x = reorder(Port, landing), y = landing, fill = T.PECHE)) + 
+       geom_bar(stat = "identity") + 
+       labs(title = "Elasmobranchs landings by port",
+                   subtitle = "from 2017 to 2021",
+                   x = "Port",
+                   y = "Landings (Kg)",fill='Gear')
+
+p + coord_flip() +
+  expand_limits(y = -2) + scale_fill_manual(values = my_palette) + 
+  theme(plot.background = element_rect(fill = "#f7f7f7"),
+        panel.background =  element_rect(fill = "#f7f7f7"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        legend.background = element_rect(fill='#f7f7f7',color='#f7f7f7'),
+        plot.title = element_text(family = 'Arial',
+                                face = 'bold',
+                                color = '#363c4c',
+                                size = 20),
+      plot.subtitle = element_text(family = 'Arial',
+                                   color = '#363c4c',
+                                   size = 18),
+
+      strip.text = element_text(family = 'Arial',
+                                face = 'bold',
+                                color = '#363c4c',
+                                size = 14),
+        
+      legend.text = element_text(family = 'Arial',
+                                 color = '#848b9b',
+                                 size = 14),
+      legend.title = element_text(family = 'Arial',
+                                  face = 'bold',
+                                  color = '#363c4c',
+                                  size = 16),
+      legend.position = 'bottom',
+      legend.box = 'vertical',
+      legend.key.height = unit(3, 'mm'),
+      legend.key.width = unit(20,'mm'),
+      axis.title = element_text(family = 'Arial',
+                                face = 'bold',
+                                color = '#848b9b',
+                                size = 16),
+      axis.text = element_text(family = 'Arial',
+                              color = '#848b9b',
+                              size = 14),
+      strip.background = element_rect(color="#c5c6d9", fill="#c5c6d9", linetype="solid"),
+      plot.margin=grid::unit(c(0.2,0.2,0.2,0.2), "cm")) + 
+  facet_wrap(~ESPECE) 
+
+ggsave(filename = here::here('figures/all_tunisia', "Elasmo by port.png"),width = 40, height = 25, units = "cm")
+```
