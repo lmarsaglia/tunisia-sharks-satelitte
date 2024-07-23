@@ -2,6 +2,31 @@
 title: "Prepare data for clustering with skater"
 output: html_notebook
 ---
+```{r}
+library(dplyr) #manipulate 
+library(tidyr) #manipulate more
+library(rnaturalearth) #because ne_states has good land resolution 
+library(ggplot2) #how could we live w/out
+library(viridis) #nice colors
+library(sf) #spatial data usage
+library(raster) #grids.. 
+library(countrycode) #never worry about iso codes again
+library(ggimage) #flagssss
+library(ggridges) #cool matrix viz
+library(ggpubr)
+library(readr)
+library(stringr) 
+library(here) # now I know the path forward
+library(marmap)
+
+
+con <- DBI::dbConnect(drv = bigrquery::bigquery(), 
+                   project = "world-fishing-827", 
+               use_legacy_sql = FALSE)
+
+options(scipen=999)
+
+```
 
 ```{r}
 # all med coordinates 

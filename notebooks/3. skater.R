@@ -1,5 +1,8 @@
 library(spdep)
 library(cluster)
+
+data_sf = readRDS(here("data", "data_sf.RData"))
+
 # Clustering SKATER 
 df_sf <- st_as_sf(data_sf, crs = wgs)%>% 
  filter(!is.na(id))
@@ -74,7 +77,7 @@ silhouette_df <- data.frame(clusters = 6:10, mean_silhouette_width = unlist(silh
 plot(silhouette_df)
 
 # choose first lowest value in silhouette plot as number of cluster and plot skater function
-skater <- skater(data.mst[,1:2], data_ict, method = "euclidean", p=8)
+skater <- skater(data.mst[,1:2], data_ict, method = "euclidean", p=4)
 str(skater)
 
 groups <- skater$groups
