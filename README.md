@@ -8,7 +8,7 @@ This repository goes with paper ....
 3. 
 
 ## folder descriptions
-notebooks: scripts and notes to run analysis
-data: all data for the analyses are stored here - including the ones generated during the analyses
-figures: folders to store figures
-shapefiles: shapefiles for analyses
+- *notebooks:* scripts and notes to run analysis
+- *data:* all data for the analyses are stored here - including the ones generated during the analyses
+- *figures:* folders to store figures
+- *shapefiles:* shapefiles for analyses
